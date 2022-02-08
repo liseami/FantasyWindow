@@ -27,23 +27,23 @@ struct ContentView: View {
             
             
             main_views
-            .navigationBarTitleDisplayMode(.large)
-            .toolbar {navi_leading;navi_trainling}
-            .PF_Navilink(isPresented: $showNotifiView) {
-                NotifiView()
-            }
-            .PF_Navilink(isPresented: $showSearchView) {
-                SearchView()
-            }
-            .PF_Navilink(isPresented: $showProfileView) {
-                ProfileView()
-            }
-            .PF_SystemSheet(isPresented: $showPhotosView) {
-                
-            } content: {
-                PhotosView()
-            }
-
+                .navigationBarTitleDisplayMode(.large)
+                .toolbar {navi_leading;navi_trainling}
+                .PF_Navilink(isPresented: $showNotifiView) {
+                    NotifiView()
+                }
+                .PF_Navilink(isPresented: $showSearchView) {
+                    SearchView()
+                }
+                .PF_Navilink(isPresented: $showProfileView) {
+                    ProfileView()
+                }
+                .PF_SystemSheet(isPresented: $showPhotosView) {
+                    
+                } content: {
+                    PhotosView()
+                }
+            
             
         }
         .navigationViewStyle(.stack)
@@ -74,6 +74,8 @@ struct ContentView: View {
     }
     
     
+    //-------------
+    // 首页
     var home_view : some View {
         VStack(spacing:48){
             RoundedRectangle(cornerRadius: 32, style: .continuous)
@@ -81,7 +83,7 @@ struct ContentView: View {
                 .frame( height: SW - 48)
                 .padding(.horizontal,24)
             
-            tools
+            camera_tools
             
             Spacer()
         }
@@ -89,6 +91,9 @@ struct ContentView: View {
         
     }
     
+    
+    //-------------
+    // 朋友
     var friends_view : some View {
         
         List{
@@ -108,7 +113,7 @@ struct ContentView: View {
                         .foregroundColor(.fc2))
             .listRowInsets(.init(top: 8, leading: 16, bottom: 8, trailing: SW / 2 - SW / 3.8 + 16))
             .listRowBackground(Color.clear)
-           
+            
             ForEach(0..<12){index in
                 userline
                     .listRowInsets(.init(top: 8, leading: 0, bottom: 8, trailing: SW / 2 - SW / 3.8 + 16))
@@ -152,12 +157,12 @@ struct ContentView: View {
                     Circle().fill(Color.random)
                         .frame(width: 32, height: 32)
                 }
-
+                
             }
             
         }
     }
-    var tools : some View {
+    var camera_tools : some View {
         VStack(spacing:24){
             HStack{
                 Spacer()
@@ -167,15 +172,15 @@ struct ContentView: View {
                 Spacer()
                 Circle()
                     .fill(Color.fc1)
-                    .frame(width: 56, height: 56)
+                    .frame(width: SW * 0.18, height: SW * 0.18)
                     .padding(.all,4)
                     .overlay(Circle().stroke(lineWidth: 3).foregroundColor(.accentColor))
                 Spacer()
                 ICON(name: "revoke",fcolor: .fc1,size: 32)
                 Spacer()
             }
-            Text("Tips:你的操作将在朋友的手机桌面同步更新。")
-                .mFont(style: .Body_13_R,color: .fc3)
+            //            Text("Tips : 你的操作将实时更新到朋友的手机桌面")
+            //                .mFont(style: .Body_15_R,color: .fc3)
         }
     }
 }
